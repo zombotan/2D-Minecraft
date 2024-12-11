@@ -143,7 +143,6 @@ class Renderer:
         self.tilemap.render(self.display_surf, offset = render_scroll)
         self.all_sprites.update(dt,self.tilemap)
         self.player.mouse_input(self.tilemap,(self.crosshair.tile[0]*16 + render_scroll[0],self.crosshair.tile[1]*16 + render_scroll[1]))
-        print((self.crosshair.tile[0]*16 + render_scroll[0],self.crosshair.tile[1]*16 + render_scroll[1]))
         self.player.render(self.display_surf, offset = render_scroll)
         self.crosshair.update(pygame.mouse.get_pos(), self.display_surf, render_scroll)
         self.screen.blit(self.display_surf)

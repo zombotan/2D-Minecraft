@@ -33,7 +33,15 @@ class Tilemap:
     
     def break_block(self,pos):
         tile_loc = (int(pos[0] // self.tile_size),int(pos[1] // self.tile_size))
-        self.tilemap.pop(str(tile_loc[0]) + ';' + str(tile_loc[1]),"not found")
+        check_loc = str(tile_loc[0]) + ';' + str(tile_loc[1])
+        if check_loc in self.tilemap:
+            self.tilemap.pop(check_loc)
+    
+    def place_block(self,pos,block):
+        tile_loc = (int(pos[0] // self.tile_size),int(pos[1] // self.tile_size))
+        check_loc = str(tile_loc[0]) + ';' + str(tile_loc[1])
+        if not check_loc in self.tilemap:
+            self.tilemap[check_loc] = {'block' : block, 'pos': tile_loc}
         
     def render(self,surf, offset = (0,0)):
         for x in range(offset[0] // self.tile_size,(offset[0] + surf.get_width()) // self.tile_size + 1):

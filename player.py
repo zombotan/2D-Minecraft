@@ -13,11 +13,15 @@ class Player(pygame.sprite.Sprite):
         self.jump_str = -200
         self.walk_str = 150
         self.run_str = 250
-        self.jump_cnt = 0 
+        self.jump_cnt = 0
+        self.equipped_block = 'grass'
     def input(self):
         keys = pygame.key.get_pressed()
         key_once = pygame.key.get_just_pressed()
-
+        if key_once[pygame.K_1]:
+            self.equipped_block = 'grass'
+        elif(key_once[pygame.K_2]):
+            self.equipped_block = 'stone'
         if keys[pygame.K_a]:
             self.velocity.x = -self.walk_str
             if keys[pygame.K_LSHIFT]:
@@ -60,6 +64,8 @@ class Player(pygame.sprite.Sprite):
         mouse = pygame.mouse.get_pressed()
         if mouse[0]:
             tileset.break_block(pos)
+        if mouse[2]:
+            tileset.place_block(pos,self.equipped_block)
                         
     def update(self,dt,tileset):
         self.input()
