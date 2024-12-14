@@ -4,7 +4,7 @@ import pygame
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,group):
         super().__init__(group)
-        self.image = pygame.Surface((32,64))
+        self.image = pygame.Surface((12,22))
         self.image.fill('red')
         self.rect = self.image.get_frect()
         self.collisions = {'up':False, 'down': False, 'left':False, 'right':False}
